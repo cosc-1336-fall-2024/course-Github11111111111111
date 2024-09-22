@@ -1,5 +1,9 @@
 import unittest
-from src.homework.c_decisions.decisions import get_options_ratio
-from src.homework.c_decisions.decisions import get_faculty_rating
+'''
+the file in /tests/homework/b_in_proc_out/tests_in_proc_out
+has the test functions
+'''
+from tests.homework.d_repetition import tests_repetition
 
-class Test_Config(unittest.TestCase):
+suite = unittest.TestLoader().loadTestsFromModule(tests_repetition)
+unittest.TextTestRunner(verbosity=2).run(suite)
