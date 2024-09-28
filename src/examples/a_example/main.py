@@ -1,5 +1,8 @@
 import devprocess
 
-#result = devprocess.add_numbers(5, 5)
+def main():
+    result = devprocess.add_numbers(5, 3)
+    print(result)
 
-devprocess.hello()
+main()    
+
