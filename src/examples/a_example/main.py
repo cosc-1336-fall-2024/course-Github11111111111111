@@ -1,7 +1,9 @@
 import devprocess
 
 def main():
-    result = devprocess.add_numbers(5, 3)
+    value1 = input("enter value1")
+    value2 = input("enter value2")
+    result = devprocess.add_numbers(int(value1), int(value2))4
     print(result)
 
 main()    
