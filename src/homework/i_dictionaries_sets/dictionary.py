@@ -1,38 +1,27 @@
-#homework 6
-def get_p_distance(list1, list2):
-    differences = 0
-    length = len(list1)  
+#homework 8
+def add_inventory(widgets, widget_name, quantity):
+    if widget_name in widgets:
+        widgets[widget_name] += quantity
+    else:
+        widgets[widget_name] = quantity
 
-    for i in range(length):
-        if list1[i] != list2[i]:
-            differences += 1
+def remove_inventory_widget(widgets, widget_name):
+    if widget_name in widgets:
+        del widgets[widget_name]
+        return 'Record deleted'
+    else:
+        return 'Item not found'
 
-    return differences / length
+inventory = {}
+add_inventory(inventory, 'WidgetA', 10)  
+add_inventory(inventory, 'WidgetB', 5)   
+print(inventory)  
 
-def get_p_distance_matrix(lists):
-    n = len(lists)  
-    matrix = [] 
+result = remove_inventory_widget(inventory, 'WidgetA')
+print(result)  
+print(inventory)  
 
-    for i in range(n):
-        row = []  
-        for j in range(n):
-            distance = get_p_distance(lists[i], lists[j])
-            row.append(distance)  
-        matrix.append(row)  
+result = remove_inventory_widget(inventory, 'WidgetC')
+print(result)  
 
-    return matrix
 
-# Sample input
-lists = [
-    ['T', 'T', 'T', 'C', 'C', 'A', 'T', 'T', 'T', 'A'],  # list1
-    ['G', 'A', 'T', 'T', 'C', 'A', 'T', 'T', 'T', 'C'],  # list2
-    ['T', 'T', 'T', 'C', 'C', 'A', 'T', 'T', 'T', 'T'],  # list3
-    ['G', 'T', 'T', 'C', 'C', 'A', 'T', 'T', 'T', 'A']   # list4
-]
-
-matrix = get_p_distance_matrix(lists)
-
-for row in matrix:
-    for value in row:
-        print("%.5f" % value, end=" ")  
-    print()  

@@ -1,48 +1,46 @@
 #homework 6
-from dictionary import get_p_distance_matrix
+from dictionary import add_inventory, remove_inventory_widget
 
-def get_p_distance(list1, list2):
-    differences = 0
-    length = len(list1)
-    for i in range(length):
-        if list1[i] != list2[i]:
-            differences += 1
-    return differences / length
+def add_inventory(widgets, widget_name, quantity):
+    if widget_name in widgets:
+        widgets[widget_name] += quantity
+    else:
+        widgets[widget_name] = quantity
 
-def get_p_distance_matrix(lists):
-    matrix = []
-    for i in range(len(lists)):
-        row = []
-        for j in range(len(lists)):
-            row.append(get_p_distance(lists[i], lists[j]))
-        matrix.append(row)
-    return matrix
+def remove_inventory_widget(widgets, widget_name):
+    if widget_name in widgets:
+        del widgets[widget_name]
+        return 'Record deleted'
+    else:
+        return 'Item not found'
 
-def display_matrix(matrix):
-    for row in matrix:
-        for value in row:
-            print(f"{value:.5f}", end=" ")
-        print()
+def display_menu():
+    print("\nInventory Menu")
+    print("1 - Add or Update Item")
+    print("2 - Delete Item")
+    print("3 - Exit")
 
 def main():
+    inventory = {}
     while True:
-        print("\n1- Get p distance matrix\n2- Exit")
-        choice = input("Choose an option: ")
-
-        if choice == "1":
-            n = int(input("Number of DNA sequences: "))
-            length = int(input("Length of each sequence: "))
-            dna_list = []
-
-            for i in range(n):
-                sequence = list(input(f"Sequence {i + 1}: ").strip().upper())
-                dna_list.append(sequence)
-
-            matrix = get_p_distance_matrix(dna_list)
-            print("\nP-Distance Matrix:")
-            display_matrix(matrix)
-
-        elif choice == "2":
-            print("Exit")
+        display_menu()
+        choice = input("Enter your choice: ")
+        
+        if choice == '1':
+            widget_name = input("Enter widget name: ")
+            quantity = int(input("Enter quantity: "))
+            add_inventory(inventory, widget_name, quantity)
+            print(f"{widget_name} updated. Current quantity: {inventory[widget_name]}")
+        
+        elif choice == '2':
+            widget_name = input("Enter widget name to delete: ")
+            result = remove_inventory_widget(inventory, widget_name)
+            print(result)
+        
+        elif choice == '3':
             break
+        
+        else:
+            print("Invalid choice.")
+
 main()
